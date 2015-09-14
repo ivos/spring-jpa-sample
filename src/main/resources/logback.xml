@@ -1,0 +1,28 @@
+<configuration scan="true">
+
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="warn">
+		<appender-ref ref="console" />
+	</root>
+
+	<logger name="com.github.ivos" level="debug" />
+
+	<!-- 
+	<logger name="com.github.ivos" level="info" />
+
+	debug SQL statements
+	<logger name="org.hibernate.SQL" level="debug" />
+	debug SQL arguments
+	<logger name="org.hibernate" level="trace" />
+
+	<logger name="org.springframework" level="debug" />
+	debug transactions
+	<logger name="org.springframework.transaction" level="trace" />
+	 -->
+
+</configuration>
