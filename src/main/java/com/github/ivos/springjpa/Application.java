@@ -7,6 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.dao.DataIntegrityViolationException;
 
 import com.github.ivos.springjpa.customer.CustomerService;
+import com.github.ivos.springjpa.order.OrderService;
 
 public class Application {
 
@@ -26,15 +27,22 @@ public class Application {
 	}
 
 	private void doWithContext(ApplicationContext context) {
-		CustomerService service = context.getBean(CustomerService.class);
+		CustomerService customerService = context.getBean(CustomerService.class);
+		OrderService orderService = context.getBean(OrderService.class);
 
-		service.testDrive();
+		orderService.clearAll();
+		customerService.clearAll();
+
+		Long customerId = customerService.testDrive();
 
 		try {
-			service.verifyConstraints();
+			customerService.verifyConstraints();
 		} catch (DataIntegrityViolationException e) {
 			logger.info("Nulls not allowed in customer.");
 		}
+
+		Long orderId = orderService.createOrders(customerId);
+		orderService.retrieveOrder(orderId);
 	}
 
 }

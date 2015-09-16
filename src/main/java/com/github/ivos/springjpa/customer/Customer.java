@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -15,6 +16,9 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_seq")
 	private Long id;
+
+	@Version
+	private long version;
 
 	@NotNull
 	@Size(max = 100)
@@ -37,6 +41,14 @@ public class Customer {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public long getVersion() {
+		return version;
+	}
+
+	public void setVersion(long version) {
+		this.version = version;
 	}
 
 	public String getLastName() {
@@ -79,7 +91,8 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + "]";
+		return "Customer [id=" + id + ", version=" + version + ", lastName=" + lastName + ", firstName=" + firstName
+				+ "]";
 	}
 
 }
