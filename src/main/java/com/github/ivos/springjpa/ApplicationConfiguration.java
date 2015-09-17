@@ -23,7 +23,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan(basePackageClasses = { ApplicationConfiguration.class })
+@ComponentScan
 @PropertySource("classpath:database.properties")
 @EnableJpaRepositories
 @EnableTransactionManagement
